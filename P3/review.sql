@@ -66,3 +66,4 @@ INSERT INTO Reviews (routineID, memberID, reviewText, publishDate, rating) VALUE
 (5, 48, 'The routine is too lengthy for my taste.', '2024-11-22 18:00:00', 3),
 (1, 49, 'Love this routine! It''s my new favorite.', '2024-11-23 19:15:00', 5),
 (2, 50, 'I have seen great improvements with this routine!', '2024-11-24 20:30:00', 4);
+

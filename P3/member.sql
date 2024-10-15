@@ -1,5 +1,3 @@
-CREATE DATABASE P3
-GO
 Use P3
 GO
 
