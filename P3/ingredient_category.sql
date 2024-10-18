@@ -4,6 +4,7 @@ GO
 CREATE TABLE IngredientCategory (
     ingredientID INT FOREIGN KEY REFERENCES Ingredient(ingredientID),
     categoryID INT
+    PRIMARY KEY (ingredientID, categoryID)
 );
 
 INSERT INTO IngredientCategory (ingredientID, categoryID) VALUES
