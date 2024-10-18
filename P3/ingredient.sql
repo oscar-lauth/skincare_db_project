@@ -5,44 +5,27 @@ CREATE TABLE Ingredient (
     ingredientID INT IDENTITY(1,1) PRIMARY KEY,
     ingredientName VARCHAR(30) UNIQUE NOT NULL,
     ingredientUse VARCHAR(50) NOT NULL, 
-    category INT FOREIGN KEY REFERENCES IngredientCategory(categoryID)
 );
 
-INSERT INTO Ingredient
-    (ingredientName, ingredientUse, category)
-VALUES
-('BHA (salicyclic acid)','anti-acne, blackhead reducing, soothing',1),
--- Exfoliants
-('AHA (Glycolic acid)', 'exfoliation, skin brightening', 1),
-('Lactic Acid', 'exfoliation, hydration', 1),
-('Mandelic Acid', 'exfoliation, acne treatment, anti-aging', 1);
-
--- Antioxidants
-INSERT INTO Ingredient (ingredientName, ingredientUse, category) VALUES
-('Vitamin C (Ascorbic Acid)', 'brightening, anti-aging, antioxidant', 2),
-('Vitamin E (Tocopherol)', 'moisturizing, antioxidant', 2),
-('Green Tea Extract', 'soothing, anti-inflammatory, antioxidant', 2);
-
--- Humectants
-INSERT INTO Ingredient (ingredientName, ingredientUse, category) VALUES
-('Hyaluronic Acid', 'hydration, plumping, humectant', 3),
-('Glycerin', 'hydration, moisture retention, humectant', 3),
-('Sodium PCA', 'moisturizing, humectant', 3);
-
--- Texture Enhancers
-INSERT INTO Ingredient (ingredientName, ingredientUse, category) VALUES
-('Silicone (Dimethicone)', 'smoothing, texture enhancer, occlusive', 4),
-('Silica', 'oil control, texture enhancement', 4),
-('Microcrystalline Cellulose', 'thickening agent, texture enhancement', 4);
-
--- Emollients
-INSERT INTO Ingredient (ingredientName, ingredientUse, category) VALUES
-('Shea Butter', 'moisturizing, softening, emollient', 5),
-('Coconut Oil', 'moisturizing, barrier repair, emollient', 5),
-('Squalane', 'hydrating, smoothing, emollient', 5);
-
--- Antibacterials
-INSERT INTO Ingredient (ingredientName, ingredientUse, category) VALUES
-('Tea Tree Oil', 'antibacterial, anti-acne, anti-inflammatory', 6),
-('Benzoyl Peroxide', 'acne treatment, antibacterial', 6),
-('Niacinamide', 'anti-inflammatory, sebum control, antibacterial', 6);
+INSERT INTO Ingredient (ingredientName, ingredientDesc) VALUES
+('BHA (salicylic acid)', 'Anti-acne, blackhead reducing, soothing'),
+('AHA', 'Anti-aging, dark spot fading, evens skin tone, hydration'),
+('PHA', 'Anti-aging, evens skin tone, smooths bumpy skin'),
+('Niacinamide (vitamin B3)', 'Anti-aging, pore minimizer, soothing'),
+('Vitamin C', 'Anti-aging, evens skin tone, dark spot fading'),
+('Vitamin A (retinol)', 'Anti-aging, anti-acne, pore minimizer'),
+('Hyaluronic Acid', 'Anti-aging, hydration'),
+('Ceramides', 'Anti-aging, hydration'),
+('Azelaic Acid', 'Anti-acne, dark spot fading, smooths bumpy skin, pH stablizer'),
+('Squalane', 'Anti-aging, hydration'),
+('Snail Mucin', 'Anti-aging, hydration, collagen stimulator'),
+('Licorice Extract', 'Dark spot fading, anti-aging, soothing'),
+('Urea', 'Hydration, smooths bumpy skin, evens skin tone, pH stablizer'),
+('Arbutin', 'Dark spot fading, soothing, anti-aging'),
+('Benzoyl Peroxide', 'Anti-acne, smooths bumpy skin'),
+('Aloe Vera', 'Hydration, soothing'),
+('Kojic Acid', 'Dark spot fading, evens skin tone, anti-aging'),
+('Sulfur', 'Anti-acne'),
+('Tea Tree Oil', 'Anti-acne'),
+('Clay (kaolin)', 'Absorbent, removes excess oil'),
+('Allantoin', 'Soothing, moisturizing');
