@@ -1,15 +1,37 @@
 USE P3
 GO
-
+    
 CREATE TABLE IngredientCategory (
-    categoryID INT IDENTITY(1,1) PRIMARY KEY,
-    categoryName VARCHAR(30) UNIQUE NOT NULL,
+    ingredientID INT FOREIGN KEY REFERENCES Ingredient(ingredientID),
+    categoryID INT
 );
 
-INSERT INTO IngredientCategory (categoryName) VALUES
-('exfoliant'),
-('antioxidant'),
-('humectant'),
-('texture enhancer'),
-('emollient'),
-('antibacterial');
+INSERT INTO IngredientCategory (ingredientID, categoryID) VALUES
+(1, 1),
+(2, 1),
+(3, 1),
+(4, 2),
+(5, 2),
+(6, 2),
+(6, 3),
+(6, 4),
+(7, 5),
+(8, 1),
+(8, 2),
+(9, 1),
+(9, 2),
+(10, 2),
+(10, 5),
+(11, 2),
+(12, 2),
+(13, 1),
+(13, 5),
+(14, 2),
+(15, 6),
+(16, 3),
+(17, 2),
+(18, 1),
+(19, 2),
+(20, 4),
+(21, 1),
+(21, 3);
