@@ -1,4 +1,6 @@
-DROP TABLE Cleanser;
+DROP TABLE Sunscreen;
+DROP TABLE Favorites;
+DROP TABLE Has;
+DROP TABLE Routine;
 DROP TABLE Product;
-DROP TABLE Moisturizer;
 DROP TABLE Users;

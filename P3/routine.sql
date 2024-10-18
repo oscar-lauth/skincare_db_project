@@ -2,14 +2,14 @@ Use P3
 GO
 
 CREATE TABLE Routine (
-    routineID  INT IDENTITY(1,1) PRIMARY KEY,
-    memberID INT FOREIGN KEY REFERENCES Users(userID),
+    routineID INT IDENTITY(1,1) PRIMARY KEY,
+    userID INT NOT NULL FOREIGN KEY REFERENCES Users(userID),
     timeOfDay VARCHAR(5) NOT NULL CHECK(timeOfDay IN('day','night')),
     summary VARCHAR(255) NOT NULL
 );
 
 INSERT INTO Routine 
-    (memberID, timeOfDay, summary)
+    (userID, timeOfDay, summary)
 VALUES
     (12, 'day', 'hydrating routine for dry skin'),  
     (7, 'night', 'anti-aging and brightening routine'),  
