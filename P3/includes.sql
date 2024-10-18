@@ -1,7 +1,7 @@
 USE P3
 GO
 
-CREATE TABLE Contains (
+CREATE TABLE Includes (
     productID INT NOT NULL REFERENCES Product(productID),
     ingredientID INT NOT NULL REFERENCES Ingredient(ingredientID),
     PRIMARY KEY (productID, ingredientID)
