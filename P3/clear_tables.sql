@@ -4,3 +4,6 @@ DROP TABLE Has;
 DROP TABLE Routine;
 DROP TABLE Product;
 DROP TABLE Users;
+DROP TABLE Member;
+DROP TABLE Reviews;
+DROP TABLE Ingredient;
