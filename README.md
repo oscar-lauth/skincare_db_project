@@ -22,3 +22,6 @@ To ensure no dependency/foreign key errors across tables, run the .sql files in 
     12. includes.sql
     13. has.sql
     14. favorites.sql
+
+## 10 Queries
+The 10 descriptive queries are located in queries.sql and can be run from there
