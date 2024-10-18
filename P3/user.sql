@@ -1,6 +1,6 @@
 USE P3
 GO
-
+-- needed auto-inc pk bc email and username could be modified later and thus not good pks
 CREATE TABLE Users (
     userID INT IDENTITY(1,1) PRIMARY KEY,
     email VARCHAR(255) UNIQUE NOT NULL,

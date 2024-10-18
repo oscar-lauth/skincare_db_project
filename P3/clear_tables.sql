@@ -11,11 +11,5 @@ Drop TABLE Cleanser;
 DROP TABLE Ingredient;
 DROP TABLE Product;
 DROP TABLE Users;
-
-
-
-
-
-
 DROP TABLE IngredientCategory;
 

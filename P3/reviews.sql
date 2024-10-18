@@ -6,8 +6,8 @@ CREATE TABLE Reviews (
     userID INT FOREIGN KEY REFERENCES Users(userID),
     PRIMARY KEY (routineID, userID),
     reviewText VARCHAR(255) NOT NULL,
-    publishDate DATETIME,
-    rating INT CHECK (rating>=1 AND rating<=5)
+    publishDate DATETIME NOT NULL,
+    rating INT NOT NULL CHECK (rating>=1 AND rating<=5)
 );
 
 INSERT INTO Reviews (routineID, userID, reviewText, publishDate, rating) VALUES

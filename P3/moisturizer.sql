@@ -3,7 +3,7 @@ GO
 
 CREATE TABLE Moisturizer (
 	productID INT PRIMARY KEY,
-    applicationType VARCHAR(10) NOT NULL CHECK (applicationType IN ('ointment', 'cream', 'lotion', 'gel'))
+    applicationType VARCHAR(10) NOT NULL CHECK (applicationType IN ('ointment', 'cream', 'lotion', 'gel')),
 	FOREIGN KEY (productID) REFERENCES Product(productID)
 );
 

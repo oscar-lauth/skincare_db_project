@@ -3,7 +3,7 @@ GO
     
 CREATE TABLE IngredientCategory (
     ingredientID INT NOT NULL FOREIGN KEY REFERENCES Ingredient(ingredientID),
-    category VARCHAR(16) NOT NULL CHECK (category IN ('exfoliant','antioxidant','humectant','texture enhancer','emollient','antibacterial'))
+    category VARCHAR(16) NOT NULL CHECK (category IN ('exfoliant','antioxidant','humectant','texture enhancer','emollient','antibacterial')),
     PRIMARY KEY (ingredientID, category)
 );
 INSERT INTO IngredientCategory (ingredientID, category) VALUES
