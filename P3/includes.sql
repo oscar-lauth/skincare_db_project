@@ -9,10 +9,9 @@ CREATE TABLE Includes (
 
 INSERT INTO Includes (productID, ingredientID) VALUES
     (1, 1),
-    (2, 2),
     (2, 4),
-    (3, 3),
-    (4, 4),
+    (3, 1),
+    (4, 2),
     (5, 2),
     (6, 1),
     (7, 5),
