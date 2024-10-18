@@ -4,10 +4,10 @@ GO
 CREATE TABLE Ingredient (
     ingredientID INT IDENTITY(1,1) PRIMARY KEY,
     ingredientName VARCHAR(30) UNIQUE NOT NULL,
-    ingredientUse VARCHAR(50) NOT NULL, 
+    ingredientUse VARCHAR(100) NOT NULL, 
 );
 
-INSERT INTO Ingredient (ingredientName, ingredientDesc) VALUES
+INSERT INTO Ingredient (ingredientName, ingredientUse) VALUES
     ('BHA (salicylic acid)', 'Anti-acne, blackhead reducing, soothing'),
     ('AHA', 'Anti-aging, dark spot fading, evens skin tone, hydration'),
     ('PHA', 'Anti-aging, evens skin tone, smooths bumpy skin'),
