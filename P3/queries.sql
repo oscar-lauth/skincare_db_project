@@ -1,3 +1,6 @@
+USE P3
+GO
+
 -- count the total number of products by type
 SELECT productType, COUNT(productID) AS totalProducts
 FROM Product
