@@ -3,14 +3,14 @@ GO
 
 CREATE TABLE Reviews (
     routineID INT FOREIGN KEY REFERENCES Routine(routineID),
-    memberID INT FOREIGN KEY REFERENCES Users(userID),
-    PRIMARY KEY (routineID, memberID),
+    userID INT FOREIGN KEY REFERENCES Users(userID),
+    PRIMARY KEY (routineID, userID),
     reviewText VARCHAR(255) NOT NULL,
     publishDate DATETIME,
     rating INT CHECK (rating>=1 AND rating<=5)
 );
 
-INSERT INTO Reviews (routineID, memberID, reviewText, publishDate, rating) VALUES
+INSERT INTO Reviews (routineID, userID, reviewText, publishDate, rating) VALUES
 (1, 1, 'This routine transformed my skin! Highly recommend.', '2024-10-01 10:00:00', 5),
 (1, 2, 'Great results, but takes time to see them.', '2024-10-02 11:00:00', 4),
 (2, 1, 'Didn''t work for me. My skin broke out.', '2024-10-03 12:30:00', 2),
