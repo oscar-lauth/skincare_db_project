@@ -20,15 +20,14 @@ SELECT skinType, COUNT(userID) AS totalUsers
 FROM Users
 GROUP BY skinType;
 
--- find all products that are part of a user’s routine along with the routine’s details
+-- find all products that are part of a routine along with the routine’s details
 SELECT p.productName, r.summary, r.timeOfDay
 FROM Product p
 JOIN Has h ON p.productID = h.productID
 JOIN Routine r ON h.routineID = r.routineID;
 
--- list all cleansers and their details that are included in user routines
-SELECT p.productName, c.cleanserForm, c.removesMakeup, r.summary
-FROM Cleanser c
-JOIN Product p ON c.productID = p.productID
-JOIN Has h ON p.productID = h.productID
-JOIN Routine r ON h.routineID = r.routineID;
+-- list all users who have reviewed a product and the details of the routine they reviewed
+SELECT u.username, r.reviewText, rt.summary, rt.timeOfDay
+FROM Reviews r
+JOIN Users u ON r.userID = u.userID
+JOIN Routine rt ON r.routineID = rt.routineID;
