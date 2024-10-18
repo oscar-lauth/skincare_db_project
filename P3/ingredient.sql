@@ -4,7 +4,7 @@ GO
 CREATE TABLE Ingredient (
     ingredientID INT IDENTITY(1,1) PRIMARY KEY,
     ingredientName VARCHAR(30) UNIQUE NOT NULL,
-    ingredientUse VARCHAR(100) NOT NULL, 
+    ingredientUse VARCHAR(100), 
 );
 
 INSERT INTO Ingredient (ingredientName, ingredientUse) VALUES
@@ -30,12 +30,12 @@ INSERT INTO Ingredient (ingredientName, ingredientUse) VALUES
     ('Clay (kaolin)', 'Absorbent, removes excess oil'),
     ('Allantoin', 'Soothing, moisturizing'),
     ('Colloidal Oatmeal', 'Soothing, anti-inflammatory'),
-    ('Zinc Oxide', ''),
-    ('Titanium Dioxide', ''),
-    ('Avobenzone', ''),
-    ('Homosalate', ''),
-    ('Octocrylene', ''),
-    ('Glycerin', ''),
-    ('tocopheryl acetate', ''),
-    ('Mineral Oil', ''),
-    ('Micelles', '');
+    ('Zinc Oxide', NULL),
+    ('Titanium Dioxide', NULL),
+    ('Avobenzone',NULL),
+    ('Homosalate', NULL),
+    ('Octocrylene', NULL),
+    ('Glycerin', NULL),
+    ('tocopheryl acetate', NULL),
+    ('Mineral Oil', NULL),
+    ('Micelles', NULL);
