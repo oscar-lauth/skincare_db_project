@@ -1,5 +1,3 @@
-CREATE DATABASE P3
-GO
 USE P3
 GO
 
@@ -14,7 +12,7 @@ CREATE TABLE Product (
 INSERT INTO Product
     (productName, manufacturer, skinType, price)
 VALUES
-    -- ('Differin 10% Benzoyl Peroxide Acne Spot Treatment', 'Differin', 'normal', 9.99),  
+    ('Differin 10% Benzoyl Peroxide Acne Spot Treatment', 'Differin', 'normal', 9.99),  
     ('CeraVe Hydrating Facial Cleanser', 'CeraVe', 'dry', 13.99),  
     ('Neutrogena Oil-Free Acne Wash', 'Neutrogena', 'oily', 8.49),  
     ('La Roche-Posay Toleriane Hydrating Cleanser', 'La Roche-Posay', 'sensitive', 14.99),
@@ -33,4 +31,34 @@ VALUES
     ('Fresh Soy Face Cleanser', 'Fresh', 'normal', 38.00),  
     ('Clinique Liquid Facial Soap', 'Clinique', 'oily', 21.00),  
     ('Aveeno Calm + Restore Nourishing Oat Cleanser', 'Aveeno', 'sensitive', 9.99),  
-    ('Eucerin Hydrating Cleansing Gel', 'Eucerin', 'dry', 10.50);
+    ('Eucerin Hydrating Cleansing Gel', 'Eucerin', 'dry', 10.50),
+    ('The Inkey List Salicylic Acid Cleanser', 'The Inkey List', 'oily', 10.99),
+    ('Olay Regenerist Regenerating Cream Cleanser', 'Olay', 'dry', 8.99),
+    ('Murad Clarifying Cleanser', 'Murad', 'oily', 32.00),
+    ('Simple Kind to Skin Refreshing Facial Wash', 'Simple', 'sensitive', 6.99),
+    ('Farmacy Green Clean Makeup Removing Balm', 'Farmacy', 'combination', 36.00),
+    ('Clinique Take The Day Off Cleansing Balm', 'Clinique', 'normal', 34.00),
+    ('Thayers pH Balancing Daily Cleanser', 'Thayers', 'sensitive', 14.99),
+    ('PanOxyl Acne Foaming Wash', 'PanOxyl', 'oily', 9.99),
+    ('Mario Badescu Enzyme Cleansing Gel', 'Mario Badescu', 'normal', 14.00),
+    ('Vichy Pureté Thermale 3-in-1 Cleanser', 'Vichy', 'combination', 18.50),
+    ('Peach & Lily Power Calm Hydrating Gel Cleanser', 'Peach & Lily', 'sensitive', 28.00),
+    ('Glow Recipe Blueberry Bounce Gentle Cleanser', 'Glow Recipe', 'normal', 34.00),
+    ('Korres Greek Yoghurt Foaming Cream Cleanser', 'Korres', 'combination', 26.00),
+    ('Herbivore Pink Cloud Creamy Jelly Cleanser', 'Herbivore', 'dry', 24.00),
+    ('COSRX Low pH Good Morning Gel Cleanser', 'COSRX', 'oily', 12.00),
+    ('DHC Deep Cleansing Oil', 'DHC', 'combination', 29.00),
+    ('Tula Cult Classic Purifying Cleanser', 'Tula', 'normal', 28.00),
+    ('Dr. Jart+ Cicapair Tiger Grass Enzyme Foam Cleanser', 'Dr. Jart+', 'sensitive', 28.00),
+    ('Hada Labo Tokyo Gentle Hydrating Cleanser', 'Hada Labo', 'dry', 12.00),
+    ('The Face Shop Rice Water Bright Light Cleansing Oil', 'The Face Shop', 'normal', 15.00),
+    ('Bioré Charcoal Acne Daily Cleanser', 'Bioré', 'oily', 8.99),
+    ('Neogen Real Fresh Foam Cleanser', 'Neogen', 'combination', 19.00),
+    ('Shiseido Clarifying Cleansing Foam', 'Shiseido', 'normal', 36.00),
+    ('Mamonde Petal Spa Oil to Foam Cleanser', 'Mamonde', 'sensitive', 21.00),
+    ('Boscia Purifying Cleansing Gel', 'Boscia', 'oily', 26.00),
+    ('Pixi Glow Tonic Cleansing Gel', 'Pixi', 'combination', 18.00),
+    ('Elemis Superfood Facial Wash', 'Elemis', 'normal', 25.00),
+    ('Laneige Cream Skin Milk Oil Cleanser', 'Laneige', 'dry', 34.00),
+    ('Erborian Solid Cleansing Oil', 'Erborian', 'combination', 39.00),
+    ('Kose Softymo Speedy Cleansing Oil', 'Kose', 'oily', 13.00);

@@ -2,9 +2,9 @@ USE P3
 
 CREATE TABLE Cleanser (
 	productID INT PRIMARY KEY,
-	cleanserForm VARCHAR(20) CHECK (cleanserForm IN ('oil-based', 'cream', 'balm', 'oil', 'water-based', 'foam', 'gel', 'wipes', 'clay', 'micellar', 'powder')),
+	cleanserForm VARCHAR(12) CHECK (cleanserForm IN ('oil-based', 'cream', 'balm', 'oil', 'water-based', 'foam', 'gel', 'wipes', 'clay', 'micellar', 'powder', 'milk', 'jelly')),
 	removesMakeup BIT,
-	fragrance VARCHAR(50)
+	fragrance VARCHAR(20) CHECK (fragrance IN ('fragrance-free', 'light fragrance')),
 	FOREIGN KEY (productID) REFERENCES Product(productID)
 );
 
@@ -12,7 +12,7 @@ INSERT INTO Cleanser
     (productID, cleanserForm, removesMakeup, fragrance)
 VALUES
     (1, 'gel', 0, 'fragrance-free'),  
-    (2, 'cream', 0, 'fragrance-`free'),  
+    (2, 'cream', 0, 'fragrance-free'),  
     (3, 'water-based', 0, 'fragrance-free'),  
     (4, 'cream', 0, 'fragrance-free'),  
     (5, 'water-based', 0, 'fragrance-free'),  
@@ -30,4 +30,34 @@ VALUES
     (17, 'gel', 1, 'light fragrance'),  
     (18, 'water-based', 0, 'fragrance-free'),  
     (19, 'cream', 0, 'light fragrance'),  
-    (20, 'gel', 1, 'fragrance-free');
+    (20, 'gel', 1, 'fragrance-free'),
+    (21, 'gel', 1, 'light fragrance'),
+    (22, 'cream', 0, 'light fragrance'),
+    (23, 'gel', 1, 'fragrance-free'),
+    (24, 'water-based', 0, 'fragrance-free'),
+    (25, 'balm', 1, 'light fragrance'),
+    (26, 'balm', 1, 'fragrance-free'),
+    (27, 'water-based', 0, 'fragrance-free'),
+    (28, 'foam', 1, 'fragrance-free'),
+    (29, 'gel', 0, 'light fragrance'),
+    (30, 'micellar', 1, 'light fragrance'),
+    (31, 'gel', 0, 'light fragrance'),
+    (32, 'jelly', 1, 'light fragrance'),
+    (33, 'cream', 0, 'fragrance-free'),
+    (34, 'jelly', 0, 'fragrance-free'),
+    (35, 'gel', 1, 'fragrance-free'),
+    (36, 'oil', 1, 'fragrance-free'),
+    (37, 'foam', 0, 'light fragrance'),
+    (38, 'foam', 1, 'fragrance-free'),
+    (39, 'cream', 0, 'fragrance-free'),
+    (40, 'oil', 1, 'light fragrance'),
+    (41, 'water-based', 1, 'fragrance-free'),
+    (42, 'foam', 1, 'light fragrance'),
+    (43, 'foam', 0, 'light fragrance'),
+    (44, 'oil-based', 1, 'light fragrance'),
+    (45, 'gel', 1, 'fragrance-free'),
+    (46, 'gel', 0, 'light fragrance'),
+    (47, 'gel', 1, 'fragrance-free'),
+    (48, 'milk', 1, 'fragrance-free'),
+    (49, 'oil-based', 1, 'light fragrance'),
+    (50, 'oil', 1, 'fragrance-free');
