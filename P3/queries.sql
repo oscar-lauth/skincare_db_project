@@ -15,10 +15,12 @@ GROUP BY skinType;
 SELECT MIN(spf) AS minSPF, MAX(spf) AS maxSPF, AVG(spf) AS avgSPF
 FROM Sunscreen;
 
--- find the total number of users with each skin type
-SELECT skinType, COUNT(userID) AS totalUsers
-FROM Users
-GROUP BY skinType;
+-- find all products that contain BHA as well as their product type
+SELECT p.productName, p.productType
+FROM Product p
+JOIN Includes c ON p.productID = c.productID
+JOIN Ingredient i ON c.ingredientID = i.ingredientID
+WHERE i.ingredientName = 'BHA (salicylic acid)';
 
 -- find all products that are part of a routine along with the routine’s details
 SELECT p.productName, r.summary, r.timeOfDay
@@ -32,19 +34,13 @@ FROM Reviews r
 JOIN Users u ON r.userID = u.userID
 JOIN Routine rt ON r.routineID = rt.routineID;
 
--- find the names of products that contain an ingredient which has conflicts with another ingredient
-SELECT p.productName
+-- find all moisturizers with an above average price
+SELECT p.productName, p.price
 FROM Product p
-WHERE p.productID IN (
-    SELECT inc.productID
-    FROM Includes inc
-    WHERE inc.ingredientID IN (
-        SELECT cw.ingredientID1
-        FROM ConflictsWith cw
-        UNION
-        SELECT cw.ingredientID2
-        FROM ConflictsWith cw
-    )
+WHERE p.price > (
+    SELECT AVG(price)
+    FROM Product
+    WHERE productType = 'Moisturizer'
 );
 
 -- find the most expensive product(s) for each skin type
