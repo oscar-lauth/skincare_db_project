@@ -7,7 +7,7 @@ CREATE TABLE Product (
     manufacturer VARCHAR(255) NOT NULL, 
     productType VARCHAR(30) NOT NULL CHECK (productType IN('Cleanser','Moisturizer','Sunscreen','Acne Treatment','Serum','Eye Cream','Mask','Toner','Exfoliant')),
     skinType VARCHAR(11) NOT NULL CHECK (skinType IN('normal','oily','dry','combination','sensitive')),
-    price SMALLMONEY NOT NULL CHECK (price>=0)
+    price SMALLMONEY NOT NULL CHECK (price >= 0)
 );
 
 INSERT INTO Product

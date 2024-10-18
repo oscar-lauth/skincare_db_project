@@ -1,4 +1,5 @@
 CREATE DATABASE P3;
+GO;
 
 -- order of execution for SQL files:
 -- 1. product.sql

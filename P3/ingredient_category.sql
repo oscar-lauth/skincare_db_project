@@ -2,37 +2,36 @@ USE P3
 GO
     
 CREATE TABLE IngredientCategory (
-    ingredientID INT FOREIGN KEY REFERENCES Ingredient(ingredientID),
-    categoryID INT
-    PRIMARY KEY (ingredientID, categoryID)
+    ingredientID INT NOT NULL FOREIGN KEY REFERENCES Ingredient(ingredientID),
+    category VARCHAR(16) NOT NULL CHECK (category IN ('exfoliant','antioxidant','humectant','texture enhancer','emollient','antibacterial'))
+    PRIMARY KEY (ingredientID, category)
 );
-
-INSERT INTO IngredientCategory (ingredientID, categoryID) VALUES
-(1, 1),
-(2, 1),
-(3, 1),
-(4, 2),
-(5, 2),
-(6, 2),
-(6, 3),
-(6, 4),
-(7, 5),
-(8, 1),
-(8, 2),
-(9, 1),
-(9, 2),
-(10, 2),
-(10, 5),
-(11, 2),
-(12, 2),
-(13, 1),
-(13, 5),
-(14, 2),
-(15, 6),
-(16, 3),
-(17, 2),
-(18, 1),
-(19, 2),
-(20, 4),
-(21, 1),
-(21, 3);
+INSERT INTO IngredientCategory (ingredientID, category) VALUES
+(1, 'exfoliant'),
+(2, 'exfoliant'),
+(3, 'exfoliant'),
+(4, 'antioxidant'),
+(5, 'antioxidant'),
+(6, 'antioxidant'),
+(6, 'humectant'),
+(6, 'texture enhancer'),
+(7, 'emollient'),
+(8, 'exfoliant'),
+(8, 'antioxidant'),
+(9, 'exfoliant'),
+(9, 'antioxidant'),
+(10, 'antioxidant'),
+(10, 'emollient'),
+(11, 'antioxidant'),
+(12, 'antioxidant'),
+(13, 'exfoliant'),
+(13, 'emollient'),
+(14, 'antioxidant'),
+(15, 'antibacterial'),
+(16, 'humectant'),
+(17, 'antioxidant'),
+(18, 'exfoliant'),
+(19, 'antioxidant'),
+(20, 'texture enhancer'),
+(21, 'exfoliant'),
+(21, 'humectant');
