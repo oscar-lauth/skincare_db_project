@@ -53,13 +53,14 @@ WHERE price = (
 );
 
 -- list the users who have reviewed more than one routine
-SELECT username
+SELECT u.username, 
+       (SELECT COUNT(r.routineID) 
+        FROM Reviews r 
+        WHERE r.userID = u.userID) AS reviewCount
 FROM Users u
-WHERE (
-    SELECT COUNT(routineID)
-    FROM Reviews r
-    WHERE r.userID = u.userID
-) > 1;
+WHERE (SELECT COUNT(r.routineID) 
+       FROM Reviews r 
+       WHERE r.userID = u.userID) > 1;
 
 -- find all products that are marked as water-resistant sunscreens and the summary of routines that contain them
 SELECT p.productName, r.summary
