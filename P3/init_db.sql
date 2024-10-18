@@ -1,7 +1,7 @@
 CREATE DATABASE P3;
 GO;
 
--- order of execution for SQL files:
+-- order to create SQL files in:
 -- 1. product.sql
 -- 2. users.sql
 -- 3. ingredient.sql
