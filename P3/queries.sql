@@ -22,11 +22,10 @@ JOIN Includes c ON p.productID = c.productID
 JOIN Ingredient i ON c.ingredientID = i.ingredientID
 WHERE i.ingredientName = 'BHA (salicylic acid)';
 
--- list users and the number of routines they have created
-SELECT u.username, COUNT(r.routineID) AS routineCount
-FROM Users u
-LEFT JOIN Routine r ON u.userID = r.userID
-GROUP BY u.username;
+-- list the product details and application type of all moisturizers
+SELECT p.productName, p.manufacturer, p.skinType, p.price, m.applicationType
+FROM Moisturizer m
+JOIN Product p ON m.productID = p.productID;
 
 -- list all users who have reviewed a product and the details of the routine they reviewed
 SELECT u.username, r.reviewText, rt.summary, rt.timeOfDay
@@ -52,7 +51,7 @@ WHERE price = (
     WHERE skinType = p.skinType
 );
 
--- list the users who have reviewed more than one routine
+-- list the users who have reviewed more than one routine and how many reviews they have submitted
 SELECT u.username, 
        (SELECT COUNT(r.routineID) 
         FROM Reviews r 
