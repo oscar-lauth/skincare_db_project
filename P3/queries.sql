@@ -31,3 +31,44 @@ SELECT u.username, r.reviewText, rt.summary, rt.timeOfDay
 FROM Reviews r
 JOIN Users u ON r.userID = u.userID
 JOIN Routine rt ON r.routineID = rt.routineID;
+
+-- find the names of products that contain an ingredient which has conflicts with another ingredient
+SELECT p.productName
+FROM Product p
+WHERE p.productID IN (
+    SELECT inc.productID
+    FROM Includes inc
+    WHERE inc.ingredientID IN (
+        SELECT cw.ingredientID1
+        FROM ConflictsWith cw
+        UNION
+        SELECT cw.ingredientID2
+        FROM ConflictsWith cw
+    )
+);
+
+-- find the most expensive product(s) for each skin type
+SELECT productName, price, skinType
+FROM Product p
+WHERE price = (
+    SELECT MAX(price)
+    FROM Product
+    WHERE skinType = p.skinType
+);
+
+-- list the users who have reviewed more than one routine
+SELECT username
+FROM Users u
+WHERE (
+    SELECT COUNT(routineID)
+    FROM Reviews r
+    WHERE r.userID = u.userID
+) > 1;
+
+-- find all products that are marked as water-resistant sunscreens and the summary of routines that contain them
+SELECT p.productName, r.summary
+FROM Routine r
+JOIN Has h ON r.routineID = h.routineID
+JOIN Product p ON h.productID = p.productID
+JOIN Sunscreen s ON p.productID = s.productID
+WHERE s.waterResistant = 1;
