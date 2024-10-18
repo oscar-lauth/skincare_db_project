@@ -3,7 +3,7 @@ DROP TABLE Favorites;
 DROP TABLE Reviews;
 DROP TABLE Has;
 DROP TABLE Routine;
-DROP TABLE Contains;
+DROP TABLE Includes;
 DROP TABLE ConflictsWith;
 DROP TABLE Sunscreen;
 DROP TABLE Moisturizer;
