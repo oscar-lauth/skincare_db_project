@@ -2,8 +2,8 @@ USE P3
 GO
     
 CREATE TABLE IngredientCategory (
-    ingredientID INT FOREIGN KEY REFERENCES Ingredient(ingredientID),
-    categoryID INT
+    ingredientID INT NOT NULL FOREIGN KEY REFERENCES Ingredient(ingredientID),
+    categoryID INT NOT NULL
     PRIMARY KEY (ingredientID, categoryID)
 );
 
