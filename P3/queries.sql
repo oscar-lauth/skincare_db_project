@@ -22,11 +22,11 @@ JOIN Includes c ON p.productID = c.productID
 JOIN Ingredient i ON c.ingredientID = i.ingredientID
 WHERE i.ingredientName = 'BHA (salicylic acid)';
 
--- find all products that are part of a routine along with the routine’s details
-SELECT p.productName, r.summary, r.timeOfDay
-FROM Product p
-JOIN Has h ON p.productID = h.productID
-JOIN Routine r ON h.routineID = r.routineID;
+-- list users and the number of routines they have created
+SELECT u.username, COUNT(r.routineID) AS routineCount
+FROM Users u
+LEFT JOIN Routine r ON u.userID = r.userID
+GROUP BY u.username;
 
 -- list all users who have reviewed a product and the details of the routine they reviewed
 SELECT u.username, r.reviewText, rt.summary, rt.timeOfDay
