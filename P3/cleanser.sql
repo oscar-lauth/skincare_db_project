@@ -1,4 +1,5 @@
 USE P3
+GO
 
 CREATE TABLE Cleanser (
 	productID INT PRIMARY KEY,

@@ -2,11 +2,62 @@ Use P3
 GO
 
 CREATE TABLE Routine (
-routineID  INT IDENTITY(1,1) PRIMARY KEY,
-memberID INT FOREIGN KEY REFERENCES Member(memberID),
-timeOfDay VARCHAR(5) NOT NULL CHECK(timeOfDay IN('day','night')),
-summary VARCHAR(255) NOT NULL,
+    routineID  INT IDENTITY(1,1) PRIMARY KEY,
+    memberID INT FOREIGN KEY REFERENCES Users(userID),
+    timeOfDay VARCHAR(5) NOT NULL CHECK(timeOfDay IN('day','night')),
+    summary VARCHAR(255) NOT NULL
 );
 
-INSERT INTO Routine (memberID, timeOfDay, summary)
-VALUES (1,'night','this is a basic routine');
+INSERT INTO Routine 
+    (memberID, timeOfDay, summary)
+VALUES
+    (12, 'day', 'hydrating routine for dry skin'),  
+    (7, 'night', 'anti-aging and brightening routine'),  
+    (23, 'day', 'Korean skincare routine'),  
+    (35, 'night', 'acne-fighting night care'),  
+    (41, 'day', 'lightweight summer routine'),  
+    (8, 'day', 'post-workout cleansing routine'),  
+    (16, 'night', 'oily skin control routine'),  
+    (3, 'day', 'simple routine with SPF focus'),  
+    (29, 'night', 'retinol-based anti-aging routine'),  
+    (50, 'day', 'sensitive skin calming routine'),  
+    (10, 'night', 'hydration-heavy overnight routine'),  
+    (27, 'day', 'vitamin C brightening routine'),  
+    (44, 'night', 'pore-tightening and detox routine'),  
+    (2, 'day', 'travel-friendly essentials routine'),  
+    (14, 'night', 'soothing recovery for redness'),  
+    (6, 'day', 'matte finish for oily skin'),  
+    (48, 'night', 'evening wind-down with masks'),  
+    (21, 'day', 'balanced care for combination skin'),  
+    (38, 'night', 'moisture-lock overnight care'),  
+    (9, 'day', 'quick 3-step morning routine'),  
+    (18, 'night', 'peptide-rich anti-wrinkle care'),  
+    (24, 'day', 'glow-boosting pre-makeup routine'),  
+    (1, 'night', 'minimalist cleanser and toner routine'),  
+    (36, 'day', 'sun care and antioxidants'),  
+    (32, 'night', 'rich creams for dry winter skin'),  
+    (25, 'day', 'daytime acne spot care'),  
+    (13, 'night', 'dual-cleansing and repair'),  
+    (46, 'day', 'quick oil-control morning care'),  
+    (37, 'night', 'hydrating Korean skincare'),  
+    (11, 'day', 'acne recovery and scar treatment'),  
+    (4, 'night', 'deep exfoliation routine'),  
+    (20, 'day', 'SPF moisturizer and mist'),  
+    (19, 'night', 'relaxing lavender night routine'),  
+    (22, 'day', 'light hydration with gel moisturizers'),  
+    (15, 'night', 'overnight brightening mask routine'),  
+    (33, 'day', 'post-shave soothing care'),  
+    (40, 'night', 'aloe-based repair and hydration'),  
+    (26, 'day', 'anti-pollution skincare for city life'),  
+    (45, 'night', 'evening self-care with serums'),  
+    (49, 'day', 'natural ingredients-focused routine'),  
+    (31, 'night', 'repairing barrier creams'),  
+    (17, 'day', 'SPF and hydration combo'),  
+    (34, 'night', 'calming chamomile night care'),  
+    (30, 'day', 'vitamin-packed skincare'),  
+    (42, 'night', 'deep moisturizing sheet mask care'),  
+    (28, 'day', 'oil-free hydration for summer'),  
+    (5, 'night', 'evening cleansing balm and serum'),  
+    (39, 'day', 'daily men’s skincare routine'),  
+    (47, 'night', 'rich oil-based repair care'),  
+    (43, 'day', 'basic skincare for beginners');
