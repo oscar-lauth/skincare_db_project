@@ -8,3 +8,4 @@ CREATE TABLE Contains (
 );
 
 INSERT INTO Contains (productID, ingredientID) VALUES
+
