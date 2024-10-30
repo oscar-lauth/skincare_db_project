@@ -3,7 +3,8 @@ GO
 
 CREATE TABLE ConflictsWith(
   ingredientID1 INT FOREIGN KEY REFERENCES ingredient(ingredientID),
-  ingredientID2 INT FOREIGN KEY REFERENCES ingredient(ingredientID)
+  ingredientID2 INT FOREIGN KEY REFERENCES ingredient(ingredientID),
+  PRIMARY KEY (ingredientID1, ingredientID2)
 );
 
 
