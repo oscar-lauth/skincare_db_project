@@ -9,3 +9,13 @@ SELECT
 FROM 
     Product;
 GO
+
+CREATE VIEW RoutineInfoView AS
+SELECT 
+    routineID,
+    userID,
+    timeOfDay,
+    summary
+FROM 
+    Routine;
+GO
