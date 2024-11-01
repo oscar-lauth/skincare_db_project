@@ -1,3 +1,13 @@
+CREATE VIEW UserInfoView AS
+SELECT 
+    userID,
+    email,
+    username,
+    skinType
+FROM 
+    Users;
+GO
+
 CREATE VIEW ProductInfoView AS
 SELECT 
     productID,
