@@ -8,24 +8,26 @@ FROM
     Users;
 GO
 
-CREATE VIEW ProductInfoView AS
-SELECT 
-    productID,
-    productName,
-    manufacturer,
-    productType,
-    skinType,
-    price
-FROM 
-    Product;
-GO
-
-CREATE VIEW RoutineInfoView AS
+CREATE VIEW DayRoutineView AS
 SELECT 
     routineID,
     userID,
     timeOfDay,
     summary
 FROM 
-    Routine;
+    Routine
+WHERE
+    timeOfDay = 'day';
+GO
+
+CREATE VIEW NightRoutineView AS
+SELECT 
+    routineID,
+    userID,
+    timeOfDay,
+    summary
+FROM 
+    Routine
+WHERE
+    timeOfDay = 'night';
 GO
