@@ -1,7 +1,7 @@
 USE P3
 GO
 
--- Useful for adding reviews to routines
+-- Useful for adding reviews to routines while ensuring no user can review a routine twice
 CREATE PROCEDURE AddRoutineReview
     @RoutineID INT,
     @UserID INT,
@@ -10,12 +10,27 @@ CREATE PROCEDURE AddRoutineReview
 AS
 BEGIN
 	SET NOCOUNT ON
-    INSERT INTO Reviews (routineID, userID, reviewText, publishDate, rating)
-    VALUES (@RoutineID, @UserID, @ReviewText, GETDATE(), @Rating);
+	IF NOT EXISTS (
+        SELECT 1
+        FROM Reviews
+        WHERE userID = @UserID AND routineID = @RoutineID
+    )
+	BEGIN
+		INSERT INTO Reviews (routineID, userID, reviewText, publishDate, rating)
+		VALUES (@RoutineID, @UserID, @ReviewText, GETDATE(), @Rating);
+	END
+	ELSE -- If review already exists, update it
+	BEGIN
+        UPDATE Reviews
+        SET reviewText = @ReviewText,
+            publishDate = GETDATE(),
+            rating = @Rating
+        WHERE userID = @UserID AND routineID = @RoutineID;
+	END
 END;
 GO
 
--- Useful for adding a routine to favorites
+-- Useful for adding a routine to favorites while ensuring no user can favorite a routine twice
 CREATE PROCEDURE AddRoutineToFavorites
     @UserID INT,
     @RoutineID INT

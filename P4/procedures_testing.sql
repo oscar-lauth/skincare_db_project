@@ -1,11 +1,11 @@
 EXEC AddRoutineReview 
     @routineID = 4, 
-    @userID = 26,
-    @reviewText = 'Garbage', 
-    @rating = 1;
+    @userID = 25,
+    @reviewText = 'Decent routine', 
+    @rating = 3;
 
 SELECT * FROM Reviews
-ORDER BY publishDate DESC
+ORDER BY routineID ASC
 
 
 EXEC AddRoutineToFavorites
