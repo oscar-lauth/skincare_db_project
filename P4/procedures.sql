@@ -1,14 +1,27 @@
 USE P3
 GO
 
--- Useful for retrieving all conflicts associated with a specific ingredient
-CREATE PROCEDURE GetConflictsForIngredient
-  @ingredientID INT
+-- Useful for adding reviews to routines
+CREATE PROCEDURE AddRoutineReview
+    @RoutineID INT,
+    @UserID INT,
+    @ReviewText VARCHAR(255),
+    @Rating INT
 AS
 BEGIN
-  SELECT ingredientID1, ingredientID2
-  FROM ConflictsWith
-  WHERE ingredientID1 = @ingredientID
-     OR ingredientID2 = @ingredientID;
+    INSERT INTO Reviews (routineID, userID, reviewText, publishDate, rating)
+    VALUES (@RoutineID, @UserID, @ReviewText, GETDATE(), @Rating);
 END;
-GO
+
+
+
+
+
+EXEC AddRoutineReview 
+    @routineID = 16, 
+    @userID = 5,
+    @reviewText = 'Great product for daily use!', 
+    @rating = 5;
+
+SELECT * FROM Reviews
+ORDER BY publishDate DESC
