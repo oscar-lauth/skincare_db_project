@@ -34,4 +34,15 @@ BEGIN
 END;
 GO
 
-
+-- Useful for getting the ingredients in a product
+CREATE PROCEDURE GetProductIngredients
+    @ProductID INT
+AS
+BEGIN
+	SET NOCOUNT ON
+    SELECT i.ingredientID, i.ingredientName, i.ingredientUse
+    FROM Includes inc
+    INNER JOIN Ingredient i ON inc.ingredientID = i.ingredientID
+    WHERE inc.productID = @ProductID;
+END;
+GO

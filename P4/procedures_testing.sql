@@ -14,3 +14,10 @@ EXEC AddRoutineToFavorites
 
 SELECT * FROM Favorites
 ORDER BY userID ASC
+
+
+EXEC GetProductIngredients
+    @ProductID = 10
+
+SELECT * FROM Includes
+ORDER BY ProductID ASC
