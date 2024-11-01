@@ -9,7 +9,29 @@ CREATE PROCEDURE AddRoutineReview
     @Rating INT
 AS
 BEGIN
+	SET NOCOUNT ON
     INSERT INTO Reviews (routineID, userID, reviewText, publishDate, rating)
     VALUES (@RoutineID, @UserID, @ReviewText, GETDATE(), @Rating);
 END;
+GO
+
+-- Useful for adding a routine to favorites
+CREATE PROCEDURE AddRoutineToFavorites
+    @UserID INT,
+    @RoutineID INT
+AS
+BEGIN
+	SET NOCOUNT ON
+    IF NOT EXISTS (
+        SELECT 1
+        FROM Favorites
+        WHERE userID = @UserID AND routineID = @RoutineID
+    )
+	BEGIN
+		INSERT INTO Favorites (userID, routineID)
+		VALUES (@UserID, @RoutineID);
+	END
+END;
+GO
+
 
