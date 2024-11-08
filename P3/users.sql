@@ -4,9 +4,10 @@ GO
 
 CREATE TABLE Users (
     userID INT IDENTITY(1,1) PRIMARY KEY,
-    email VARCHAR(255),
+    email VARCHAR(255) NOT NULL,
     username VARCHAR(100) UNIQUE NOT NULL,
-    skinType VARCHAR(11) NOT NULL CHECK (skinType IN ('normal','oily','dry','combination','sensitive'))
+    skinType VARCHAR(11) NOT NULL CHECK (skinType IN ('normal','oily','dry','combination','sensitive')),
+    CONSTRAINT email_constraint UNIQUE (email)
 );
 
 INSERT INTO Users 

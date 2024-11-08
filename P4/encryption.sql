@@ -39,6 +39,9 @@ SELECT
     encryptedEmail
 FROM Users;
 
+ALTER TABLE USERS
+DROP CONSTRAINT email_constraint;
+
 ALTER TABLE Users
 DROP COLUMN email;
 
