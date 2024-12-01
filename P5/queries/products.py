@@ -21,12 +21,13 @@ class SkinTypeEnum(str, Enum):
     dry = 'dry'
     combination = 'combination'
     sensitive = 'sensitive'
-class ProductModel(BaseModel):
+class ProductCreateModel(BaseModel):
     productName: str
     manufacturer: str
     productType: ProductTypeEnum
     skinType: SkinTypeEnum = SkinTypeEnum.normal
     price: float
+    ingredientIDs: list[int]
 
 router = APIRouter()
 
@@ -37,6 +38,7 @@ product_table = Table('Product', metadata)
 sunscreen_table = Table('Sunscreen', metadata)
 moisturizer_table = Table('Moisturizer', metadata)
 cleanser_table = Table('Cleanser', metadata)
+includes_table = Table('Includes', metadata)
 
 
 @router.get("/")
@@ -94,7 +96,7 @@ def get_product(product_id: int, db: Engine = Depends(get_db)):
     return result[0]._mapping
 
 @router.post("/")
-def create_product(product: ProductModel, db: Engine = Depends(get_db)):
+def create_product(product: ProductCreateModel, db: Engine = Depends(get_db)):
     """
     Insert a new product.
     """
@@ -105,7 +107,10 @@ def create_product(product: ProductModel, db: Engine = Depends(get_db)):
         skinType=product.skinType,
         price=product.price,
     )
-    db.execute(stmt)
+    result = db.execute(stmt)
+    print(result.inserted_primary_key)
+    for ingredientID in product.ingredientIDs:
+        db.execute(includes_table.insert().values(productID = result.inserted_primary_key[0], ingredientID = ingredientID))
     db.commit()
     return {"message": "Product created successfully"}
 
