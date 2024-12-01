@@ -64,8 +64,8 @@ def get_sunscreens(db: Engine = Depends(get_db)):
     result = [row._mapping for row in db.execute(stmt).all()]
     return result
 
-@router.get("/moisturizer/")
-def get_sunscreens(db: Engine = Depends(get_db)):
+@router.get("/moisturizers/")
+def get_moisturizers(db: Engine = Depends(get_db)):
     """
     Get all moisturizer products.
     """
