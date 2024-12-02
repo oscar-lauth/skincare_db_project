@@ -1,10 +1,25 @@
 from fastapi import APIRouter, HTTPException, Depends
 from sqlalchemy import Table, select, and_, func
 from sqlalchemy.engine import Engine
+from sqlalchemy.exc import IntegrityError
 from database import get_db
 from database import metadata
+from enum import Enum
+from pydantic import BaseModel
 
 router = APIRouter()
+
+class SkinTypeEnum(str, Enum):
+    normal = 'normal'
+    oily = 'oily'
+    dry = 'dry'
+    combination = 'combination'
+    sensitive = 'sensitive'
+
+class UserCreateModel(BaseModel):
+    email: str
+    username: str
+    skinType: SkinTypeEnum
 
 users_table = Table('Users', metadata)
 
@@ -21,3 +36,24 @@ def get_user(user_id: int, db: Engine = Depends(get_db)):
             detail="User not found"
         )
     return result[0]._mapping
+
+@router.post("/")
+def create_user(user: UserCreateModel, db: Engine = Depends(get_db)):
+    """
+    Insert a new user
+    """
+    stmt = users_table.insert().values(
+        email=user.email,
+        username=user.username,
+        skinType=user.skinType.value
+    )
+    try:
+        db.execute(stmt)
+        db.commit()
+    except IntegrityError:
+        db.rollback()
+        raise HTTPException(
+            status_code=400,
+            detail="A user with this email or username already exists."
+        )
+    return {"message": "User created"}
