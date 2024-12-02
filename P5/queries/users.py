@@ -78,3 +78,15 @@ def update_user(user_id: int, user: UserUpdateModel, db: Engine = Depends(get_db
         db.execute(update_stmt)
     db.commit()
     return {"message": "User updated successfully"}
+
+@router.delete("/{user_id}")
+def delete_user(user_id: int, db: Engine = Depends(get_db)):
+    """
+    Delete a user
+    """
+    stmt = users_table.delete().where(users_table.c.userID == user_id)
+    result = db.execute(stmt)
+    db.commit()
+    if result.rowcount == 0:
+        raise HTTPException(status_code=404, detail="User not found")
+    return {"message": "User deleted successfully"}
