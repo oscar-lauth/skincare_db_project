@@ -9,6 +9,7 @@ from database import metadata
 
 ingredient_table = Table('Ingredient', metadata)
 user_table = Table('Users', metadata)
+includes_table = Table('Includes', metadata)
 
 @router.get("/")
 def get_ingredients(db: Engine = Depends(get_db)):
@@ -96,4 +97,13 @@ def get_product(ingredient_id: int, db: Engine = Depends(get_db)):
     stmt = ingredient_table.delete().where(ingredient_table.c.ingredientID == ingredient_id)
     result = db.execute(stmt)
     db.commit()
+    return result
+
+@router.get("/product/{product_id}")
+def get_product(product_id: int, db: Engine = Depends(get_db)):
+    """
+    Delete all ingredients for a product by ID.
+    """
+    stmt = select(includes_table).where(includes_table.c.productID == product_id)
+    result = [row._mapping['ingredientID'] for row in db.execute(stmt).all()]
     return result
