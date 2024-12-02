@@ -1,5 +1,5 @@
 from fastapi import APIRouter, HTTPException, Depends
-from sqlalchemy import Table, select, and_
+from sqlalchemy import Table, select, and_, func
 from sqlalchemy.engine import Engine
 from database import get_db
 from database import metadata
@@ -66,8 +66,23 @@ def create_review(review: dict, db: Engine = Depends(get_db)):
         routineID = review['routineID'],
         userID = review['userID'],
         reviewText = review['reviewText'],
+        publishDate=func.now(),
         rating = review['rating']
     )
     db.execute(stmt)
     db.commit()
     return {"message": "Review created successfully"}
+
+@router.put("/{routine_id}/{user_id}")
+def update_review(routine_id: int, user_id: int, review: dict, db: Engine = Depends(get_db)):
+    """
+    Update a review
+    """
+    stmt = reviews_table.update().where(and_(reviews_table.c.routineID == routine_id, reviews_table.c.userID == user_id)).values(
+        reviewText = review['reviewText'],
+        rating = review['rating'],
+        publishDate=func.now()
+    )
+    db.execute(stmt)
+    db.commit()
+    return {"message": "Review updated successfully"}
