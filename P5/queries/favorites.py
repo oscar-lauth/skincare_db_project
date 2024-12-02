@@ -24,3 +24,35 @@ def get_favorites(user_id: int, db: Engine = Depends(get_db)):
         )
     routine_ids = [row._mapping['routineID'] for row in result]
     return routine_ids
+
+@router.post("/")
+def create_favorite(favorite: dict, db: Engine = Depends(get_db)):
+    """
+    Insert a new favorite
+    """
+    if 'routineID' not in favorite or 'userID' not in favorite:
+        raise HTTPException(
+            status_code=400,
+            detail="Needs routineID and userID"
+        )
+    stmt1 = select(routine_table).where(routine_table.c.routineID == favorite['routineID'])
+    stmt2 = select(users_table).where(users_table.c.userID == favorite['userID'])
+    result1 = db.execute(stmt1).all()
+    result2 = db.execute(stmt2).all()
+    if not result1:
+        raise HTTPException(
+            status_code=400,
+            detail="RoutineID not found."
+        )
+    if not result2:
+        raise HTTPException(
+            status_code=400,
+            detail="UserID not found."
+        )
+    stmt = favorites_table.insert().values(
+        routineID=favorite['routineID'],
+        userID=favorite['userID']
+    )
+    db.execute(stmt)
+    db.commit()
+    return {"message": "Favorite created successfully"}
