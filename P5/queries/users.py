@@ -21,6 +21,11 @@ class UserCreateModel(BaseModel):
     username: str
     skinType: SkinTypeEnum
 
+class UserUpdateModel(BaseModel):
+    email: str | None = None
+    username: str | None = None
+    skinType: SkinTypeEnum | None = None
+
 users_table = Table('Users', metadata)
 
 @router.get("/{user_id}")
@@ -57,3 +62,19 @@ def create_user(user: UserCreateModel, db: Engine = Depends(get_db)):
             detail="A user with this email or username already exists."
         )
     return {"message": "User created"}
+
+@router.put("/{user_id}")
+def update_user(user_id: int, user: UserUpdateModel, db: Engine = Depends(get_db)):
+    """
+    Update a user
+    """
+    stmt = select(users_table).where(users_table.c.userID == user_id)
+    existing_user = db.execute(stmt).fetchone()
+    if not existing_user:
+        raise HTTPException(status_code=404, detail="User not found")
+    update_data = {key: value for key, value in user.model_dump(exclude_unset=True).items()}
+    if update_data:
+        update_stmt = users_table.update().where(users_table.c.userID == user_id).values(**update_data)
+        db.execute(update_stmt)
+    db.commit()
+    return {"message": "User updated successfully"}
