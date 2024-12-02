@@ -98,3 +98,15 @@ def update_review(routine_id: int, user_id: int, review: dict, db: Engine = Depe
     if result.rowcount == 0:
         raise HTTPException(status_code=404, detail="Review not found")
     return {"message": "Review updated successfully"}
+
+@router.delete("/{routine_id}/{user_id}")
+def delete_review(routine_id: int, user_id: int, db: Engine = Depends(get_db)):
+    """
+    Delete a review
+    """
+    stmt = reviews_table.delete().where(and_(reviews_table.c.routineID == routine_id, reviews_table.c.userID == user_id))
+    result = db.execute(stmt)
+    db.commit()
+    if result.rowcount == 0:
+        raise HTTPException(status_code=404, detail="Review not found")
+    return {"message": "Review deleted successfully"}
