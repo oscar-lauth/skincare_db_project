@@ -83,6 +83,8 @@ def update_review(routine_id: int, user_id: int, review: dict, db: Engine = Depe
         rating = review['rating'],
         publishDate=func.now()
     )
-    db.execute(stmt)
+    result = db.execute(stmt)
     db.commit()
+    if result.rowcount == 0:
+        raise HTTPException(status_code=404, detail="Review not found")
     return {"message": "Review updated successfully"}
