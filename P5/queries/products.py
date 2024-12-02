@@ -115,11 +115,10 @@ def create_product(product: ProductCreateModel, db: Engine = Depends(get_db)):
         price=product.price,
     )
     result = db.execute(stmt)
-    print(result.inserted_primary_key)
     for ingredientID in product.ingredientIDs:
         db.execute(includes_table.insert().values(productID = result.inserted_primary_key[0], ingredientID = ingredientID))
     db.commit()
-    return {"message": "Product created successfully"}
+    return {"message": "Product created successfully", "productID": result.inserted_primary_key[0]}
 
 @router.put("/{product_id}")
 def update_product(product_id: int, product: ProductUpdateModel, db: Engine = Depends(get_db)):
