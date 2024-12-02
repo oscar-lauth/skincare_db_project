@@ -9,6 +9,7 @@ from database import metadata
 
 conflicts_table = Table('ConflictsWith', metadata)
 ingredient_table = Table('Ingredient', metadata)
+includes_table = Table('Includes', metadata)
 
 @router.get("/{ingredient_id_1}")
 def get_conflicts(ingredient_id_1: int, db: Engine = Depends(get_db)):
@@ -56,4 +57,20 @@ def get_product(ingredient_id_1: int, ingredient_id_2: int, db: Engine = Depends
     stmt = conflicts_table.delete().where(and_(conflicts_table.c.ingredientID1 == ingredient_id_1, conflicts_table.c.ingredientID2 == ingredient_id_2))
     result = db.execute(stmt)
     db.commit()
+    return result
+
+@router.get("/product/{product_id}")
+def get_product_conflicts(product_id: int, db: Engine = Depends(get_db)):
+    i2 = includes_table.alias('i2')
+    stmt = select(includes_table.c.productID).select_from(
+        includes_table.join(
+            conflicts_table,
+            conflicts_table.c.ingredientID1 == includes_table.c.ingredientID
+        )
+        .join(
+            i2,
+            conflicts_table.c.ingredientID2 == i2.c.ingredientID
+        )
+    ).where(i2.c.productID == product_id)
+    result = [x._mapping['productID'] for x in db.execute(stmt).all()]
     return result
