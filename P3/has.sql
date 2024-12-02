@@ -2,8 +2,8 @@ USE P3
 GO
 
 CREATE TABLE Has (
-    productID INT NOT NULL REFERENCES Product(productID),
-    routineID INT NOT NULL REFERENCES Routine(routineID),
+    productID INT NOT NULL FOREIGN KEY REFERENCES Product(productID) ON DELETE CASCADE,
+    routineID INT NOT NULL FOREIGN KEY REFERENCES Routine(routineID) ON DELETE CASCADE,
     orderIndex INT NOT NULL CHECK (orderIndex >= 0),
     PRIMARY KEY (productID, routineID)
 );

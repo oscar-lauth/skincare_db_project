@@ -2,8 +2,8 @@ Use P3
 GO
 
 CREATE TABLE Reviews (
-    routineID INT FOREIGN KEY REFERENCES Routine(routineID),
-    userID INT FOREIGN KEY REFERENCES Users(userID),
+    routineID INT FOREIGN KEY REFERENCES Routine(routineID) ON DELETE CASCADE,
+    userID INT FOREIGN KEY REFERENCES Users(userID) ON DELETE CASCADE,
     PRIMARY KEY (routineID, userID),
     reviewText VARCHAR(255) NOT NULL,
     publishDate DATETIME DEFAULT(GETDATE()) NOT NULL,

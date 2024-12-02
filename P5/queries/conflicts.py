@@ -17,4 +17,8 @@ def get_conflicts(product_id: int, db: Engine = Depends(get_db)):
     stmt = select(conflicts_table.c.ingredientID2).where(conflicts_table.c.ingredientID1 == product_id)
     l = [conflict._mapping['ingredientID2'] for conflict in db.execute(stmt).all()]
     result = {'conflicts': l}
+<<<<<<< HEAD
     return result
+=======
+    return result
+>>>>>>> 4121dfa6c66648443c4cc109d6753335fcb55bd8
