@@ -48,6 +48,11 @@ def create_review(review: dict, db: Engine = Depends(get_db)):
             status_code = 400,
             detail = "Needs routineID and userID and reviewText and rating"
         )
+    if not (1 <= review['rating'] <= 5):
+        raise HTTPException(
+            status_code = 400,
+            detail = "Rating must be between 1 and 5."
+        )
     stmt1 = select(routine_table).where(routine_table.c.routineID == review['routineID'])
     stmt2 = select(users_table).where(users_table.c.userID == review['userID'])
     result1 = db.execute(stmt1).all()
@@ -78,6 +83,11 @@ def update_review(routine_id: int, user_id: int, review: dict, db: Engine = Depe
     """
     Update a review
     """
+    if not (1 <= review['rating'] <= 5):
+        raise HTTPException(
+            status_code = 400,
+            detail = "Rating must be between 1 and 5."
+        )
     stmt = reviews_table.update().where(and_(reviews_table.c.routineID == routine_id, reviews_table.c.userID == user_id)).values(
         reviewText = review['reviewText'],
         rating = review['rating'],
