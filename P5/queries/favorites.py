@@ -56,3 +56,15 @@ def create_favorite(favorite: dict, db: Engine = Depends(get_db)):
     db.execute(stmt)
     db.commit()
     return {"message": "Favorite created successfully"}
+
+@router.delete("/{routine_id}/{user_id}")
+def delete_favorite(routine_id: int, user_id: int, db: Engine = Depends(get_db)):
+    """
+    Delete a favorite
+    """
+    stmt = favorites_table.delete().where(and_(favorites_table.c.routineID == routine_id, favorites_table.c.userID == user_id))
+    result = db.execute(stmt)
+    db.commit()
+    if result.rowcount == 0:
+        raise HTTPException(status_code=404, detail="Favorite not found")
+    return {"message": "Favorite deleted successfully"}
