@@ -8,7 +8,7 @@ app.include_router(routines.router, prefix="/routines", tags=["Routines"])
 app.include_router(conflicts.router, prefix="/conflicts", tags=["Conflicts"])
 app.include_router(ingredients.router, prefix="/ingredients", tags=["Ingredients"])
 app.include_router(reviews.router, prefix="/reviews", tags=["Reviews"])
-app.include_router(reviews.router, prefix="/favorites", tags=["Favorites"])
+app.include_router(favorites.router, prefix="/favorites", tags=["Favorites"])
 
 if __name__ == "__main__":
     uvicorn.run(
