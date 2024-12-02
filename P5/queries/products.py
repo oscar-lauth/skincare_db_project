@@ -148,4 +148,6 @@ def delete_product(product_id: int, db: Engine = Depends(get_db)):
     stmt = product_table.delete().where(product_table.c.productID == product_id)
     result = db.execute(stmt)
     db.commit()
-    return result
+    if result.rowcount == 0:
+        raise HTTPException(status_code=404, detail="Product not found")
+    return {"message": "Product deleted successfully"}
