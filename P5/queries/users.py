@@ -51,17 +51,18 @@ def create_user(user: UserCreateModel, db: Engine = Depends(get_db)):
         email=user.email,
         username=user.username,
         skinType=user.skinType.value
-    )
+    ).returning(users_table.c.userID)
     try:
-        db.execute(stmt)
+        result = db.execute(stmt)
         db.commit()
+        user_id = result.scalar_one()
     except IntegrityError:
         db.rollback()
         raise HTTPException(
             status_code=400,
             detail="A user with this email or username already exists."
         )
-    return {"message": "User created"}
+    return {"message": "User created", "userID": user_id}
 
 @router.put("/{user_id}")
 def update_user(user_id: int, user: UserUpdateModel, db: Engine = Depends(get_db)):
