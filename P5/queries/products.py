@@ -29,6 +29,13 @@ class ProductCreateModel(BaseModel):
     price: float
     ingredientIDs: list[int]
 
+class ProductUpdateModel(BaseModel):
+    productName: str | None = None
+    manufacturer: str | None = None
+    productType: ProductTypeEnum | None = None
+    skinType: SkinTypeEnum | None = None
+    price: float | None = None
+
 router = APIRouter()
 
 # Reflect the Product table from the database
@@ -114,6 +121,26 @@ def create_product(product: ProductCreateModel, db: Engine = Depends(get_db)):
     db.commit()
     return {"message": "Product created successfully"}
 
+@router.put("/{product_id}")
+def update_product(product_id: int, product: ProductUpdateModel, db: Engine = Depends(get_db)):
+    """
+    Update am existing product
+    """
+    stmt = select(product_table).where(product_table.c.productID == product_id)
+    existing_product = db.execute(stmt).fetchone()
+    if not existing_product:
+        raise HTTPException(status_code=404, detail="Product not found")
+
+    # Build the update statement dynamically
+    update_data = {key: value for key, value in product.model_dump(exclude_unset=True).items()}
+    if update_data:
+        update_stmt = product_table.update().where(product_table.c.productID == product_id).values(**update_data)
+        db.execute(update_stmt)
+
+
+    # Commit changes
+    db.commit()
+    return {"message": "Product updated successfully"}
 @router.delete("/{product_id}")
 def delete_product(product_id: int, db: Engine = Depends(get_db)):
     """
