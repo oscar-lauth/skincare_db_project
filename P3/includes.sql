@@ -2,8 +2,8 @@ USE P3
 GO
 
 CREATE TABLE Includes (
-    productID INT NOT NULL REFERENCES Product(productID) ON DELETE CASCADE,
-    ingredientID INT NOT NULL REFERENCES Ingredient(ingredientID) ON DELETE CASCADE,
+    productID INT NOT NULL FOREIGN KEY REFERENCES Product(productID) ON DELETE CASCADE,
+    ingredientID INT NOT NULL FOREIGN KEY REFERENCES Ingredient(ingredientID) ON DELETE CASCADE,
     PRIMARY KEY (productID, ingredientID)
 );
 
@@ -187,5 +187,3 @@ INSERT INTO Includes (productID, ingredientID) VALUES
     (168, 3),
     (169, 6),
     (170, 5);
-
-SELECT * FROM Includes;

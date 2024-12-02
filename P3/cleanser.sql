@@ -6,7 +6,7 @@ CREATE TABLE Cleanser (
 	cleanserForm VARCHAR(12) CHECK (cleanserForm IN ('oil-based', 'cream', 'balm', 'oil', 'water-based', 'foam', 'gel', 'wipes', 'clay', 'micellar', 'powder', 'milk', 'jelly')),
 	removesMakeup BIT,
 	fragrance VARCHAR(20) CHECK (fragrance IN ('fragrance-free', 'light fragrance')),
-	FOREIGN KEY (productID) REFERENCES Product(productID)
+	FOREIGN KEY (productID) REFERENCES Product(productID) ON DELETE CASCADE
 );
 
 INSERT INTO Cleanser

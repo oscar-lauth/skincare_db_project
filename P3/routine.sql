@@ -3,7 +3,7 @@ GO
 
 CREATE TABLE Routine (
     routineID INT IDENTITY(1,1) PRIMARY KEY,
-    userID INT NOT NULL FOREIGN KEY REFERENCES Users(userID),
+    userID INT FOREIGN KEY REFERENCES Users(userID) ON DELETE SET NULL,
     timeOfDay VARCHAR(5) NOT NULL CHECK(timeOfDay IN('day','night')),
     summary VARCHAR(255) NOT NULL
 );
