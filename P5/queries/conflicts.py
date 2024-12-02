@@ -73,4 +73,9 @@ def get_product_conflicts(product_id: int, db: Engine = Depends(get_db)):
         )
     ).where(i2.c.productID == product_id)
     result = [x._mapping['productID'] for x in db.execute(stmt).all()]
+    if not result:
+        raise HTTPException(
+            status_code = 404,
+            detail = "This product has no conflicts"
+        )
     return result
